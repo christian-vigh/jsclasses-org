@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>$.script JQuery demo</title>
+
+<!-- How to use the script.js features : -->
+
+<!-- Step 0 : you need JQuery -->
+<script language='javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+
+<!-- Step 1 : Include script.js in the page where you have scripts that need to retrieve their url parameters -->
+<script language="javascript" type="text/javascript" src="thrak.script-1.0.1.js"></script>
+
+<!-- Step 2 : all you have to do now is to include your own scripts, passing them whatever url parameters you want. -->
+<script language="javascript" type="text/javascript" src="sample_include_1.js?script1_param1=value1&script1_param2=value2&script1_paramn=valuen"></script>
+<script language="javascript" type="text/javascript" src="sample_include_2.js?script2_param1=value1&script2_param2=value2&script2_paramn=valuen"></script>
+
+<!-- 
+	You can have a look at sample*_include.js for an example skeleton script.
+	See also file README.md for a comprehensive coverage of script.js features and usage.
+ -->
+
+<!-- The rest of this file is dedicated to the demo -->
+<script type="text/javascript">
+$(document). ready
+   (
+	function ( )
+	   {
+		// Display the url parameters passed to sample_include_1.js and sample_include_2.js
+		display_parameters ( 'script1_parameters', 'script1_directive', 'sample_include_1', $. get_sample1_parameters ( ) ) ;
+		display_parameters ( 'script2_parameters', 'script2_directive', 'sample_include_2', sample2_script. parameters ) ;
+
+		// Displays both script parameters and corresponding <script> tag
+		function  display_parameters ( params_div, script_div, script_file, params )
+		   {
+			// Get the <div> that will be filled with parameter names and values
+			var	$params_div		=  $('#' + params_div) ;
+			// Get the <div> that will receive the html code of the corresponding <script> tag
+			var	$script_div		=  $('#' + script_div) ;
+			// Get the corresponding <script> object
+			var	$script_object		=  $('script[src*="' + script_file + '"]') ;
+			
+			// Put parameter names and values
+			for ( var  name  in  params )
+				$params_div. append ( '<p>Parameter name = <b>' + name + '</b>, value = <b>' + params [ name ] + '</b></p>' ) ;
+
+			// then the html code of the <script> tag
+			$script_div. text ( $script_object [0]. outerHTML ) ;
+		    }
+	    }
+    ) ;
+</script>
+
+</head>
+
+
+<body>
+	<h1>Sample demo of $.script() :</h1>
+
+	<table cellpadding="6" cellspacing="0">
+		<tr>
+			<td>Url parameters retrieved by <a href="sample_include_1.js">sample_include_1.js</a> :</td>
+			<td>Url parameters retrieved by <a href="sample_include_2.js">sample_include_2.js</a> :</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="script1_parameters" style="with: 300px; border: 1px solid; padding: 6px 8px"></div>
+			</td>
+			<td>
+				<div id="script2_parameters" style="with: 300px; border: 1px solid; padding: 6px 8px"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>&lt;script&gt; directive used :</td>
+			<td>&lt;script&gt; directive used :</td>
+		</tr>
+		<tr>
+			<td>
+				<code>
+					<div id="script1_directive" style="with: 300px; border: 1px solid; padding: 6px 8px"></div>
+				</code>
+			</td>
+			<td>
+				<code>
+					<div id="script2_directive" style="with: 300px; border: 1px solid; padding: 6px 8px"></div>
+				</code>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
