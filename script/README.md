@@ -31,7 +31,7 @@ In your html page, you first need :
 
 When your script executes, the **$.script()** function is available to it. It returns an object that contains data specific to your script, such as url parameters. You are free to use it (or not) but keep in mind the following aspects :
 
-1.  **$.script()** returns the data related to the last &lt;script&gt; tag found in the calling document. This is in fact the &lt;script&gt; tag that invoked your script. Although it could be possible, the **$.script()** function is not designed to retrieve data from other scripts that may have been included before yours.
+1.  **$.script()** returns the data related to the last &lt;script&gt; tag found in the calling document (your html page). This is in fact the &lt;script&gt; tag that invoked your script. Although it could be possible, the **$.script()** function is not designed to retrieve data from other scripts that may have been included before yours.
 2.  The return value of **$.script()** is local to the scope of your script. Once you get out of your script's scope, **$.script()** may reference another &lt;script&gt; tag. This is why it is really important to save the function's return value if you want to use it later.
 
 The following paragraphs give some various "techniques" to save this data.
@@ -41,6 +41,8 @@ This is the simplest way : just declare a global variable :
 
 		// File : save_classical.js
 		var 	save_classical_script_data 	=  $. script ( ) ;
+
+The key issue with this approach is that you have to take care of global variable names.
 
 ### SAVING DATA THE JQUERY WAY ###
 
@@ -62,7 +64,7 @@ Just do the same way within your script :
 	
 # REFERENCE #
 
-This section gives a detailed description of the object returned by the **$.script()** functions, which has no parameters.
+This section gives a detailed description of the object returned by the **$.script()** function, which has no parameters.
 
 The example data values all refer to this example script tag :
 
