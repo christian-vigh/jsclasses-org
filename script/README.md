@@ -66,7 +66,7 @@ Just do the same way within your script :
 
 This section gives a detailed description of the object returned by the **$.script()** function, which has no parameters.
 
-The example data values all refer to this example script tag :
+The example data values listed below all refer to this example script tag :
 
 		<script language="javascript" src="http://www.example.com/dir/file.js?lang=fr"></script>
 
