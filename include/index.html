@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>$.script JQuery demo</title>
+
+<!-- How to use the script.js features : -->
+
+<!-- Step 0 : you need JQuery -->
+<script language='javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+
+<!-- Step 1 : Include the jquery extension ($.script is needed) -->
+<script language="javascript" type="text/javascript" src="thrak.script-1.0.1.js"></script>
+<script language="javascript" type="text/javascript" src="thrak.include-1.0.0.js"></script>
+
+
+<!-- The rest of this file is dedicated to the demo -->
+<script>
+$(document). ready
+   (
+	function ( )
+	   {
+		$('#demo'). click
+		   (
+			function ( )
+			   {
+				$. include
+					.js ( 'examples/example.js' )
+					.css ( 'examples/example.css' )
+					.html ( 'examples/example.html' ) ;
+			    }
+		    ) ;
+
+		$('#demo-callback'). click
+		   (
+			function ( )
+			   {
+				$. include
+					.html 
+					   ( 
+						'examples/example2.html',
+						function ( status )
+						   {
+							alert ( "example2.html has been loaded, status = " + status ) ;
+						    }
+					   ) ;
+			    }
+		    ) ;
+
+		$('#demo-async'). click
+		   (
+			function ( )
+			   {
+				$('#demo-async-div'). html ( '' ) ;
+				$. include
+					.js ( 'examples/async1.js' )
+					.js ( 'examples/async2.js' )
+					.js ( 'examples/async3.js' ) ;
+			    }
+		    ) ;
+
+
+		$('#demo-sync'). click
+		   (
+			function ( )
+			   {
+				$('#demo-sync-div'). html ( '' ) ;
+				$. include
+					.chain ( 'examples/sync1.js', 'examples/sync2.js', 'examples/sync3.js' ) ;
+			    }
+		    ) ;
+	    }
+    ) ;
+</script>
+
+</head>
+
+
+<body>
+	<h1>Sample demo of $.include() :</h1>
+
+	1) By clicking <button id="demo">here</button> :
+	<ul>
+		<li>example.js will be loaded and will display an alert() message</li>
+		<li>example.css and example.html will be loaded ; html content will be appended to the page</li>
+	</ul>
+	
+	<br />
+	2) By clicking <button id="demo-callback">here</button>, a callback function will display a message once example2.html has been loaded.
+
+	<br /><br />
+
+	3) Click <button id="demo-async">here</button> to load scripts async1.js, async2.js and async3.js in an asynchronous way. <br />
+	Once loaded they add a message at the bottom of the page ; the order in which those messages are displayed should be random,
+	due to the asynchronous way of loading.
+	(note : you may need several clicks to observe different orders of script loading)
+	(note 2 : if you are working on a local filesystem using php in webserver mode (php -S), load order may be always async1, async2 and async3...)
+	<div id="demo-async-div"></div>
+
+	<br />
+
+	4) Click <button id="demo-sync">here</button> to load scripts async1.js, async2.js and async3.js in a perfectly sequential order :
+	<div id="demo-sync-div"></div>
+
+</body>
+</html>
