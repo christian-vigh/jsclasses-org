@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>$.stickyfooter JQuery demo</title>
+
+<!-- How to use the stickyfooter.js features : -->
+
+<!-- Step 0 : you need JQuery -->
+<script language='javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+
+<!-- Step 1 : Include stickyfooter.js  -->
+<script language="javascript" type="text/javascript" src="thrak.ui.stickyfooter-1.0.0.js"></script>
+
+<!-- Step 3 : on document load, call the stickyFooter() function on whatever elements need to be "sticky-footed"-->
+<script type="text/javascript">
+$(document). ready
+   (
+	function ( )
+	   {
+		// Comment this out just to check what happens to the background of the <body> element when sticky footer is disabled
+		$('#stickyfooter'). stickyFooter ( ) ;
+	    }
+    ) ;
+</script>
+
+<style>
+body
+   {
+   	padding			:  0px;
+   	margin			:  0px;
+	background		:  #e2aaba; /* Old browsers */
+	background		:  -moz-linear-gradient(45deg,  #e2aaba 0%, #8b2240 69%, #000000 100%); /* FF3.6+ */
+	background		:  -webkit-gradient(linear, left bottom, right top, color-stop(0%,#e2aaba), color-stop(69%,#8b2240), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+	background		:  -webkit-linear-gradient(45deg,  #e2aaba 0%,#8b2240 69%,#000000 100%); /* Chrome10+,Safari5.1+ */
+	background		:  -o-linear-gradient(45deg,  #e2aaba 0%,#8b2240 69%,#000000 100%); /* Opera 11.10+ */
+	background		:  -ms-linear-gradient(45deg,  #e2aaba 0%,#8b2240 69%,#000000 100%); /* IE10+ */
+	background		:  linear-gradient(45deg,  #e2aaba 0%,#8b2240 69%,#000000 100%); /* W3C */
+	filter			:  progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2aaba', endColorstr='#8b2240',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	width			:  100% ;
+   }
+</style>
+
+
+</head>
+
+
+<body>
+	<h1>Sample demo of $.stickyfooter() :</h1>
+	<br/>
+	<br />
+	<br />
+	*** END OF PAGE ***
+
+	<!-- Step 4 : declare the html elements that need to appear at the bottom of the window as the footer -->
+	<div id="stickyfooter">
+		<hr />
+		Contact us...
+	</div>
+</body>
+</html>

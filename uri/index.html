@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>$.uri JQuery demo</title>
+
+<!-- To use the uri.js features, simply include the javascript : -->
+<script language='javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+<script language="javascript" type="text/javascript" src="thrak.uri-1.0.0.js"></script>
+
+<!-- The rest of this file is dedicated to the demo -->
+<script type="text/javascript">
+$(document). ready
+   (
+	function ( )
+	   {
+		$('#validate'). click
+		   (
+			function  ( )
+			   {
+				var	url	=  $. uri  ( $('#url'). val ( ) ) ;
+
+				url. locals ( $('#locals'). val ( ). split ( /[ ,]/ ) ) ;
+
+				$('#uri-anchor'). text ( url. anchor ( ) ) ;
+
+				var	creds	=  url. credentials ( ) ;
+				$('#uri-credentials'). text ( '{ user : ' + creds. user + ', password : ' + creds. password + ' }' ) ;
+
+				$('#uri-directory'). text ( url. directory ( ) ) ;
+				$('#uri-host'). text ( url. host ( ) ) ;
+				$('#uri-href'). text ( url. href ( ) ) ;
+				$('#uri-hrefLocal'). text ( url. hrefLocal ( ) ) ;
+				$('#uri-page'). text ( url. page ( ) ) ;
+				$('#uri-password'). text ( url. password ( ) ) ;
+				$('#uri-path'). text ( url. path ( ) ) ;
+				$('#uri-port'). text ( url. port ( ) ) ;
+				$('#uri-protocol'). text ( url. protocol ( ) ) ;
+				$('#uri-query'). text ( url. query ( ) ) ;
+				$('#uri-queryLocal'). text ( url. queryLocal ( ) ) ;
+				$('#uri-user'). text ( url. user ( ) ) ;
+
+				var	params		=  url. parameters ( ) ;
+				var	paramstr	=  '' ;
+
+				if  ( params  !==  undefined )
+				   {
+					var	param_array	=  [] ;
+
+					for  ( var  i = 0 ; i  <   params. parameters. length ; i ++ )
+					   {
+						var	p	=  params. parameters [i] ;
+
+						param_array. push ( p. name + '=' + p. value ) ;
+					    }
+				    }
+
+				$('#uri-parameters'). html ( param_array. join ( '<br/>' ) ) ;
+			    }
+		    ). click ( ) ;
+	    }
+    ) ;
+</script>
+
+<style>
+#display
+   {
+	border		: 1px solid black; 
+	border-collapse	: collapse ;
+	margin-left	: 10em ;
+    }
+
+#display th
+   {
+	border		: 1px solid black ;
+    }
+
+#display td
+   {
+	border		: 1px solid black ;
+    }
+
+input
+   {
+	font-size	:  11px ;
+    }
+</style>
+
+</head>
+
+
+<body>
+	<h1>Sample demo of $.uri() :</h1>
+
+	<table cellpadding="3">
+		<tr>
+			<td>
+				Url to parse :
+			</td>
+			<td>
+				<input type="text" id="url" size="140" value="http://testuser:foobar@www.example.com:80/path/subdir/test.html?param=value&param2=value2&local_parameter=local_parameter_value#anchor" />
+			</td>
+			<td>
+				<input type="button" id="validate" value="Parse" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Query parameters local to this url :
+			</td>
+			<td>
+				<input type="text" id="locals" size="110" value="local_parameter" />
+			</td>
+			<td>
+				&nbsp;
+			</td>
+		</tr>
+	</table>
+	<br /><br /><br />
+
+	<table id="display" cellpadding="6" cellspacing="0">
+		<tr>
+			<th>$.uri method :</th>
+			<th>Retrieved value :</th>
+		</tr>
+		<tr>
+			<td>anchor()</td>
+			<td><span id="uri-anchor"></span></td>
+		</tr>
+		<tr>
+			<td>credentials()</td>
+			<td><span id="uri-credentials"></span></td>
+		</tr>
+		<tr>
+			<td>directory()</td>
+			<td><span id="uri-directory"></span></td>
+		</tr>
+		<tr>
+			<td>host()</td>
+			<td><span id="uri-host"></span></td>
+		</tr>
+		<tr>
+			<td>href()</td>
+			<td><span id="uri-href"></span></td>
+		</tr>
+		<tr>
+			<td>hrefLocal()</td>
+			<td><span id="uri-hrefLocal"></span></td>
+		</tr>
+		<tr>
+			<td>page()</td>
+			<td><span id="uri-page"></span></td>
+		</tr>
+		<tr>
+			<td>password()</td>
+			<td><span id="uri-password"></span></td>
+		</tr>
+		<tr>
+			<td>parameters()</td>
+			<td><span id="uri-parameters"></span></td>
+		</tr>
+		<tr>
+			<td>path()</td>
+			<td><span id="uri-path"></span></td>
+		</tr>
+		<tr>
+			<td>port()</td>
+			<td><span id="uri-port"></span></td>
+		</tr>
+		<tr>
+			<td>protocol()</td>
+			<td><span id="uri-protocol"></span></td>
+		</tr>
+		<tr>
+			<td>query()</td>
+			<td><span id="uri-query"></span></td>
+		</tr>
+		<tr>
+			<td>queryLocal()</td>
+			<td><span id="uri-queryLocal"></span></td>
+		</tr>
+		<tr>
+			<td>user()</td>
+			<td><span id="uri-user"></span></td>
+		</tr>
+	</table>
+</body>
+</html>

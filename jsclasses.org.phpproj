@@ -21,7 +21,10 @@
   <ItemGroup>
     <Folder Include="include\" />
     <Folder Include="include\examples\" />
+    <Folder Include="uri\" />
+    <Folder Include="stickyfooter\" />
     <Folder Include="script\" />
+    <Folder Include="stickyfooter\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="include\examples\sync1.js" />
@@ -45,5 +48,14 @@
     <Content Include="script\sample_include_1.js" />
     <Content Include="script\sample_include_2.js" />
     <Content Include="script\thrak.script-1.0.1.js" />
+    <Content Include="stickyfooter\images\with-sticky-footer.png" />
+    <Content Include="stickyfooter\index.html" />
+    <Content Include="stickyfooter\LICENSE" />
+    <Content Include="stickyfooter\NOTICE" />
+    <Content Include="stickyfooter\thrak.ui.stickyfooter-1.0.0.js" />
+    <Content Include="uri\index.html" />
+    <Content Include="uri\LICENSE" />
+    <Content Include="uri\NOTICE" />
+    <Content Include="uri\thrak.uri-1.0.0.js" />
   </ItemGroup>
 </Project>
