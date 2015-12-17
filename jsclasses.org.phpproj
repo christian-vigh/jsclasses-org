@@ -48,7 +48,9 @@
     <Content Include="script\sample_include_1.js" />
     <Content Include="script\sample_include_2.js" />
     <Content Include="script\thrak.script-1.0.1.js" />
+    <Content Include="stickyfooter\images\stickyfooter-after-page-load.png" />
     <Content Include="stickyfooter\images\with-sticky-footer.png" />
+    <Content Include="stickyfooter\images\without-sticky-footer.png" />
     <Content Include="stickyfooter\index.html" />
     <Content Include="stickyfooter\LICENSE" />
     <Content Include="stickyfooter\NOTICE" />
