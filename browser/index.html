@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>$.browser demo</title>
+
+<!-- How to use the browser.js features : -->
+
+<!-- Step 0 : you need JQuery -->
+<script language='javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+
+<!-- Step 1 : Include script.js in the page where you have scripts that need to retrieve their url parameters -->
+<script language="javascript" type="text/javascript" src="thrak.browser-1.0.0.js"></script>
+
+<!-- The rest of this file is dedicated to the demo -->
+<script type="text/javascript">
+$(document). ready
+   (
+	function ( )
+	   {
+		$('#agent'). html ( $.browser.agent ) ;
+		$('#applicationVersion'). html ( 
+			'{ codeName : ' + $. browser. applicationVersion. codeName + ', ' +
+			'major : ' + $. browser. applicationVersion. major + ', ' +
+			'minor : ' + $. browser. applicationVersion. minor + ', ' +
+			'name : ' + $. browser. applicationVersion. name + ' }' ) ;
+		$('#browserType'). html (
+			'chrome : ' + $. browser. chrome + '<br/>' +
+			'firefox : ' + $. browser. firefox + '<br/>' +
+			'ie : ' + $. browser. ie + '<br/>' +
+			'opera : ' + $. browser. opera + '<br/>' +
+			'safari : ' + $. browser. safari + '<br/>' +
+			'unknown : ' + $.browser.unknown + '<br/>' +
+			'webkit : ' + $.browser.webkit ) ;
+		$( '#cookiesEnabled' ).html( $.browser.cookiesEnabled );
+		$('#displayName'). html ( $. browser. displayName ) ;
+		$('#doNotTrack'). html ( $. browser. doNotTrack ) ;
+		$('#language').html ( 
+			'{ code : ' + $. browser. language. code + ', variant : ' + $. browser. language. variant + ' }' ) ;
+		$('#name'). html ( $. browser. name ) ;
+		$('#online'). html ( $. browser. online ) ;
+		$('#platform'). html ( 
+			'{ cpu : ' + $. browser. platform. cpu + ', ' +
+			'os : ' + $. browser. platform. os + ' }' ) ;
+		$('#product'). html (
+			'{ name : ' + $. browser. product. name + ', ' +
+			' build : ' + $. browser. product. build + ', ' +
+			'buildId : ' + $. browser. product. buildId + ' }' ) ;
+
+		$('#javaEnabled'). html ( '' + $. browser. prop ( 'javaEnabled' ) ) ;
+		$('#taintEnabled'). html ( '' + $. browser. prop ( 'taintEnabled' ) ) ;
+		$('#scrollbarWidth'). html ( $. browser. prop ( 'scrollbarWidth' ) ) ;
+		$( '#scrollbarHeight' ).html( $.browser.prop( 'scrollbarHeight' ) );
+	}
+    ) ;
+</script>
+
+<style>
+#display 
+   {
+		border: 1px solid black;
+		border-collapse: collapse;
+		margin-left: 10em;
+    }
+
+#display th 
+   {
+	border: 1px solid black;
+    }
+
+#display td 
+   {
+	border: 1px solid black;
+    }
+
+input 
+   {
+	font-size: 11px;
+    }
+</style>
+
+
+</head>
+
+
+<body>
+	<h1>Sample demo of $.browser() :</h1>
+
+	<table id="display" cellpadding="6" cellspacing="0">
+		<tr>
+			<th>Property :</th>
+			<th>Retrieved value :</th>
+		</tr>
+		<tr>
+			<td>$.browser.agent</td>
+			<td><span id="agent"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.applicationVersion</td>
+			<td><span id="applicationVersion"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser. <i>browser type</i></i></td>
+			<td><span id="browserType"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.cookiesEnabled</td>
+			<td><span id="cookiesEnabled"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.displayName</td>
+			<td><span id="displayName"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.doNotTrack</td>
+			<td><span id="doNotTrack"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.language</td>
+			<td><span id="language"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.name</td>
+			<td><span id="name"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.online</td>
+			<td><span id="online"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.platform</td>
+			<td><span id="platform"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.product</td>
+			<td><span id="product"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.prop ( 'javaEnabled' )</td>
+			<td><span id="javaEnabled"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.prop ( 'taintEnabled' )</td>
+			<td><span id="taintEnabled"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.prop ( 'scrollbarWidth' )</td>
+			<td><span id="scrollbarWidth"></span></td>
+		</tr>
+		<tr>
+			<td>$.browser.prop ( 'scrollbarHeight' )</td>
+			<td><span id="scrollbarHeight"></span></td>
+		</tr>
+	</table>
+</body>
+</html>
