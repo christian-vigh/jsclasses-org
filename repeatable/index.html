@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>$.repeatable JQuery demo</title>
+
+<!-- How to use the $.repeatable.js features : -->
+
+<!-- Step 0 : you need jQuery and jQuery UI -->
+<script language='javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+<script language='javascript' src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+
+<!-- Step 1 : Include repeatable.js  -->
+<script language="javascript" type="text/javascript" src="thrak.ui.repeatable-1.0.0.js"></script>
+
+<!-- Step 2 : Don't forget to style your repeatable elements -->
+<link rel="stylesheet" href="css/repeatable.css"/>
+
+<!-- Step 3 : on document load, call the repeatable() function on whatever elements need to be repeated -->
+<script type="text/javascript">
+$(document). ready
+   (
+	function ( )
+	   {
+		$('.repeatable'). repeatable ( ) ;
+	    }
+    ) ;
+</script>
+</head>
+
+
+<body>
+	<h1>Sample demo of $.repeatable() :</h1>
+
+	Start of repeatable html elements (click on <img src="images/add-small-enabled.png" /> to add an item and 
+	<img src="images/delete-small-enabled.png" /> to remove one)
+	<br/><br /><br />
+
+	<!-- Step 4 : declare the html elements that need to appear at the bottom of the window as the footer -->
+	<div id="demo" class="repeatable" min-instances="1" max-instances="4">
+		<span>Value : </span>					&nbsp;
+		<input type="text" id="value" name="values[]"/>		&nbsp;&nbsp;&nbsp;&nbsp;
+		<span>Attached file : </span>				&nbsp;
+		<input type="file" name="files[]" />
+	</div>
+</body>
+</html>
