@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>$.msgbox demo</title>
+
+<!-- How to use the browser.js features : -->
+
+<!-- Step 0 : you need JQuery and jQuery ui -->
+<script language='javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+<script language='javascript' src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+
+<!-- Step 1 : Include a jQuery UI theme -->
+<link rel="stylesheet" href="css/themes/thrak/jquery-ui-1.10.3.custom.css">
+
+<!-- Optional step 1 : Include $.script -->
+
+<!-- Step 2 : Include msgbox.js -->
+<script language="javascript" type="text/javascript" src="thrak.ui.msgbox-1.2.1.js"></script>
+
+<!-- The rest of this file is dedicated to the demo -->
+<script type="text/javascript">
+$(document). ready
+   (
+	function ( )
+	   {
+		// Display a $.alert box with the specified message and a custom title
+		// When closing (by clicking ok or close button), a native "alert" message will be displayed
+		$('#alert'). click 
+		   (
+			function ( e )
+			   {
+				$. alert 
+				   ( 
+					$('#sample'). val ( ),
+					"Alert box",
+					function ( ) { alert ( "You will close the $.alert() box" ) ; }
+				    )
+			    }
+		    ) ;
+
+		$('#error'). click 
+		   (
+			function ( e )
+			   {
+				$. error 
+				   ( 
+					$('#sample'). val ( ),
+					function ( ) { alert ( "You will close the $.error() box" ) ; }
+				    )
+			    }
+		    ) ;
+
+		$('#confirm'). click 
+		   (
+			function ( e )
+			   {
+				$. confirm 
+				   ( 
+					$('#sample'). val ( ),
+					function ( status ) { alert ( "You chosed " + ( ( status ) ? "[OK]" : "[CANCEL]" ) ) ; }
+				    )
+			    }
+		    ) ;
+
+		// When an inputbox closes, the parameter supplied to the callback is either false or the value of the input field
+		$('#inputbox'). click 
+		   (
+			function ( e )
+			   {
+				$. inputbox 
+				   ( 
+					$('#sample'). val ( ),
+					function ( status ) { alert ( ( ( status === false ) ?  "Input cancelled" : "You entered the following :\n" + status ) ) ; }
+				    )
+			    }
+		    ) ;
+
+		$('#wait'). click 
+		   (
+			function ( e )
+			   {
+				$. wait ( $('#sample'). val ( ) ) ;
+				setTimeout ( function ( ) { $.wait () ; }, 1000 ) ;
+			    }
+		    ) ;
+	    }
+    ) ;
+</script>
+</head>
+
+
+<body>
+	<h1>Sample demo of $.msgbox() :</h1>
+	<br />
+
+	Sample text : <input id="sample" type="text" size="110" value="Ma soeur a été mordue par un élan" />
+	<br /><br />
+	<input id="alert" type="button" value="$.alert()" />
+	&nbsp;
+	<input id="error" type="button" value="$.error()" />
+	&nbsp;
+	<input id="confirm" type="button" value="$.confirm()" />
+	&nbsp;
+	<input id="inputbox" type="button" value="$.inputbox()" />
+	&nbsp;
+	<input id="wait" type="button" value="$.wait()" />
+</body>
+</html>
