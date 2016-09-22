@@ -62,9 +62,13 @@
     [Version : 1.2.1]	[Date : 2015/11/03]     [Author : CV]
 	. Added the wait() function.
 
+    [Version : 1.2.2]	[Date : 2016/09/22]     [Author : CV]
+	. Added the possibility to define new buttons in the "options" parameter of the $.alert() and
+	  $.error() functions.
+
  **************************************************************************************************************/
 
-( function ( $ )
+( function ( $, me )
    {
 	// To allow stacking of several message boxes, a dialog div with a unique id will be created and appended to the end
 	// of document body. This variable is incremented each time a new message box has to be created.
@@ -163,6 +167,7 @@
 	$. msgbox. IDRETRY			=  4 ;
 	$. msgbox. IDTRYAGAIN			=  10 ;
 	$. msgbox. IDYES			=  6 ; 
+	$. msgbox. IDUSER			=  1000 ;	// User-supplied buttons can safely use ids starting with this value
 	  
 	// What to display if the caller forgot to specify a message ???
 	var	message			=  "<span style='color: #FF0000'>The developer forgot to specify a message for this alert...</span>" ;
@@ -225,7 +230,7 @@
 
 	// __close_me -
 	//	Ensures the current message box is destroyed after calling the optional user callback.
-	//	Calls the 'destroy' method instead of 'close', since the latter does not prevent event bubbling :
+	//	Calls the 'destroy' method insted of 'close', since the latter does not prevent event bubbling :
 	//	This means that if you have multiple stacked dialogs, the close() method of each dialog will be
 	//	called...
 	function  __close_me ( $this, user_callback, status )
@@ -387,18 +392,6 @@
 
 				break ;    
 			
-			// Error message box ; at this stage, the only difference between error() and alert() resides in the default title
-			case	"error" :
-				dialog_options. buttons	=
-				   [
-					{
-						html	:  labels. buttonLabels [ 'ok' ],
-						click	:  function ( e ) { __close_me ( $this, user_callback, true ) ; }
-					 }
-				    ] ;
-
-				break ;
-
 			// Input box : we should have an Ok and Cancel button
 			case	"inputbox" :
 				dialog_options. buttons	=
@@ -577,16 +570,45 @@
 				break ;
 			    }
 
-			// Alert message box : There is a single Ok button.
+			// Alert/error message box : There is a single Ok button, unless the caller has specified 
+			// additional buttons.
 			case	"alert" :
+			case	"error" : 
 			default :
-				dialog_options. buttons	=
-				   [
+				// No button defined by the caller
+				if  ( dialog_options. buttons  ===  undefined )
+					dialog_options. buttons		=  [] ;
+				// Buttons have been defined by the caller : wrap the callback specified for the "click" entry so
+				// that we are able to close the box afterwards
+				else 
+				   {
+					for  ( var  i = 0 ; i  < dialog_options. buttons. length ; i ++ )
+					   {
+						var	button		=  dialog_options. buttons [i],
+							callback	=  button. click,
+							retval		=  ( button. returns ) ?  button. returns : true ;
+						
+						button. click	=  function ( e )
+						   {
+							var	status	=  callback ( e ) ;
+
+							if  ( status  ===  false )
+								return ;
+
+							__close_me ( $this, user_callback, retval ) ;
+							dialog_options. buttons		=  undefined ;
+						    }
+					    }
+				     }
+
+				// There will always be an Ok button
+				dialog_options. buttons. push
+				   (
 					{
 						html	:  labels. buttonLabels [ 'ok' ],
-						click	:  function ( e ) { __close_me ( $this, user_callback, true ) ; }
+						click	:  function ( e ) { __close_me ( $this, user_callback, true ) ; dialog_options. buttons	=  undefined ; }
 					 }
-				    ] ;
+				    ) ;
 		    }
 
 		// If an input box was requested, add the code for the input field
@@ -661,9 +683,7 @@
 		   (
 			function  ( e )
 			   {
-				e. preventDefault		&&  e. preventDefault ( ) ;
-				e. stopPropagation		&&  e. stopPropagation ( ) ;
-				e. stopImmediatePropagation	&&  e. stopImmediatePropagation ( ) ;
+				$this. killEvent ( e ) ;
 
 				__close_me ( $this, user_callback, false ) ;
 
@@ -811,7 +831,7 @@
 			height		:  "auto",
 			closeOnEscape	:  false,
 			resizable	:  false,
-			stack		:  false,
+			stack		:  true,
 			open		:  function ( )
 			   {
 				$(this). siblings ( 'div.ui-dialog-titlebar'). remove ( ) ;
@@ -823,4 +843,6 @@
 
 		$waitDialog	=  $this ;
 	    }
-    } ) ( jQuery ) ;
+
+
+    } ) ( jQuery, $. script ( ) ) ;

@@ -72,6 +72,11 @@ Displays an alert message (simple message box). The parameters are the following
 
 The *status* parameter of the callback function is always set to true. 
 
+The *options* parameter can now contain a **buttons** member, which allows you to specify additional buttons to your alert box ; each element will be added to the left of the *Ok* button and can contain the following members :
+
+- *html* : The button text to be displayed
+- *click* : A callback function which will be passed the current event as a parameter. The alert box will be closed if the callback returns a value different from *false*.
+
 ## $.error ( msg, title, callback, options ) ##
 Displays an error message (simple message box). The parameters are the following :
 
@@ -82,6 +87,8 @@ Displays an error message (simple message box). The parameters are the following
 
 The difference with **$.alert()** resides only in the class names used for styling.
 The *status* parameter of the callback function is always set to true. 
+
+As for **$.alert**, additional buttons may be specified with the *options* parameter.
 
 ## $.inputbox ( msg, title, callback, options, field_definition ) ##
 Asks the user for text input. The parameters are the following :
