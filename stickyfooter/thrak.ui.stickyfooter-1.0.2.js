@@ -27,9 +27,12 @@
     [Version : 1.0.0]		[Date : 2013/11/09]     [Author : CV]
         Initial version.
 
-    [Version : 1.0.0.1]		[Date : 2013/12/17]     [Author : CV]
+    [Version : 1.0.1]		[Date : 2013/12/17]     [Author : CV]
 	. Removed browser-specific dependencies to properly align the footer to the bottom of the browser window
 	  and added a manual call to the resize() event instead, which did the trick.
+
+    [Version : 1.0.2]		[Date : 2016/12/14]     [Author : CV]
+	. The top margin of the sticky footer was not reset before being recomputed.
 
  **************************************************************************************************************/
 
@@ -44,6 +47,9 @@
 		// The function stick() does the real sticky job...
 		function  stick ( $this )     
 		   {
+			// Reset the footer top margin before recomputing it
+			$this. css ( 'margin-top', '0px' ) ;
+
 			// Where are we ?
 			var  document_height	=  $(window). height ( ) ;
 			var  footer_height	=  $this. outerHeight ( ) ;
@@ -57,10 +63,8 @@
 			
 				margin_top += delta ;
 
-				$this. css ( 'margin-top', margin_top + 'px' ) ;				
+				$this. css ( 'margin-top', margin_top + 'px' ) ;
 			    }
-			else 
-				$this. css ( 'margin-top', '0px' ) ;
 		     }
 
 		
